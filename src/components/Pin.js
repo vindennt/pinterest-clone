@@ -1,13 +1,36 @@
-// Tutorial source; https://www.youtube.com/watch?v=XvmQbEziy4Y
-
-import React from "react";
+import React, { useState } from "react";
 
 import "../styles/pin_styles.css";
 
+function uploadImage(event, setPinImage) {
+  const target = event.target.files[0];
+
+  if (event.target.files && target) {
+    // check that target file exists
+    if (/image\/*/.test(target.type)) {
+      // if target is an image, proceed
+      const reader = new FileReader();
+
+      reader.onload = function () {
+        setPinImage(reader.result); // changes state of pinImage to read URL
+      };
+      reader.readAsDataURL(target); // read imiage URL
+    }
+  }
+}
+
 function Pin() {
+  const [pinImage, setPinImage] = useState();
+
   return (
     <div>
-      <input type="file" name="picture" id="picture" value="" />
+      <input
+        onChange={(event) => uploadImage(event, setPinImage)}
+        type="file"
+        name="picture"
+        id="picture"
+        value=""
+      />
 
       <div className="card">
         <div className="pin_title"></div>
@@ -45,9 +68,10 @@ function Pin() {
               />
             </div>
           </div>
-          <div className="pin_image">
-            <img src="" alt="pin_image" />
-          </div>
+        </div>
+
+        <div className="pin_image">
+          <img src={pinImage} alt="pin_image" />
         </div>
       </div>
     </div>

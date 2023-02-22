@@ -1,8 +1,8 @@
 <<<<<<< HEAD
 
-# react-learning-app
+# pinterest-clone
 
-Tic tac toe app from React Docs tutorial
+From tutorial by An Object is A: https://www.youtube.com/watch?v=XvmQbEziy4Y
 
 # Getting Started with Create React App
 
