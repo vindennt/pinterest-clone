@@ -164,7 +164,17 @@
 }
 
 .pin_image img {
+    opacity: 0;
+}
+
+.pin_max_width {
+    max-width: 100%;
+    /* opacity: 1; */
+}
+
+.pin_max_height {
     max-height: 100%;
+    /* opacity: 1; doesnt work */
 }
 
 #left_side .foot .save_from_site {
