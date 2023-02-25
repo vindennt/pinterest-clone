@@ -51,6 +51,20 @@ function check_size(event) {
   // we wanted to hide that by using opacity
 }
 
+function save_pin(pinDetails) {
+  const users_data = {
+    ...pinDetails,
+    author: "D",
+    board: "default",
+    title: document.querySelector("#pin_title").value,
+    description: document.querySelector("#pin_description").value,
+    destination: document.querySelector("#pin_destination").value,
+    pin_size: document.querySelector("#pin_size").value,
+  };
+
+  console.log(users_data);
+}
+
 function Modal() {
   const [pinDetails, setPinDetails] = useState({
     author: "",
@@ -140,12 +154,14 @@ function Modal() {
           <div className="head">
             <div className="select_size">
               <select defaultValue="Select" name="pin_size" id="">
-                <option value="">Select</option>
+                <option value="Select">Select</option>
                 <option value="small">small</option>
                 <option value="medium">medium</option>
                 <option value="large">large</option>
               </select>
-              <div className="save_pin">Save</div>
+              <div onClick={() => save_pin(pinDetails)} className="save_pin">
+                Save
+              </div>
             </div>
           </div>
 
@@ -160,13 +176,13 @@ function Modal() {
               placeholder="What is this pin about"
               type="text"
               className="new_pin_input"
-              id="pin_desc"
+              id="pin_description"
             />
             <input
               placeholder="Add destination link"
               type="text"
               className="new_pin_input"
-              id="pin_dest"
+              id="pin_destination"
             />
           </div>
         </div>
