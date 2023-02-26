@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/modal_styles.css";
+import "../components/Pin.js";
 
 function upload_img(
   event,
@@ -31,7 +32,7 @@ function upload_img(
 }
 
 function check_size(event) {
-  // make sure that img fills full of the pin box (parent element)
+  // makes uploaded image fill the box
   const image = event.target;
 
   image.classList.add("pin_max_width");
@@ -51,10 +52,10 @@ function check_size(event) {
   // we wanted to hide that by using opacity
 }
 
-function save_pin(pinDetails) {
+function save_pin(pinDetails, add_pin) {
   const users_data = {
     ...pinDetails,
-    author: "D",
+    author: "Default",
     board: "default",
     title: document.querySelector("#pin_title").value,
     description: document.querySelector("#pin_description").value,
@@ -62,10 +63,12 @@ function save_pin(pinDetails) {
     pin_size: document.querySelector("#pin_size").value,
   };
 
-  console.log(users_data);
+  add_pin(users_data);
+
+  console.log(users_data); // double check correct data are saved
 }
 
-function Modal() {
+function Modal(props) {
   const [pinDetails, setPinDetails] = useState({
     author: "",
     board: "",
@@ -152,14 +155,18 @@ function Modal() {
 
         <div className="side" id="right_side">
           <div className="head">
+            {/* // For selector, do not leave id blank */}
             <div className="select_size">
-              <select defaultValue="Select" name="pin_size" id="">
-                <option value="Select">Select</option>
+              <select defaultValue="Select" name="pin_size" id="pin_size">
+                <option value="">Select</option>
                 <option value="small">small</option>
                 <option value="medium">medium</option>
                 <option value="large">large</option>
               </select>
-              <div onClick={() => save_pin(pinDetails)} className="save_pin">
+              <div
+                onClick={() => save_pin(pinDetails, props.add_pin)}
+                className="save_pin"
+              >
                 Save
               </div>
             </div>

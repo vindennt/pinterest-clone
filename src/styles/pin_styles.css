@@ -1,4 +1,4 @@
-.card {
+/* .card {
     width: 252px;
     height: 512px;
     border-radius: 16px;
@@ -7,7 +7,7 @@
 
     background-color:chocolate;
 
-}
+} */
 
 .pin_title {
     width: 0;
@@ -120,6 +120,19 @@
 
 }
 
-.pin_image img {
+/* .pin_image img {
     max-height: 100%;
+    // Old logic that did not fill pin size
+} */
+
+.pin_image img {
+    opacity: 0;
+}
+
+.pin_max_width {
+    max-width: 100%;
+}
+
+.pin_max_height {
+    max-height: 100%; 
 }
